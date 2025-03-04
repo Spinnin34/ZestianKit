@@ -1,0 +1,10 @@
+name: ZestianKits
+version: '1.0'
+main: p.zestianKits.ZestianKits
+api-version: '1.20'
+authors: [ Spinnin34 ]
+commands:
+  kit:
+    description: Gives the player a kit
+    usage: /kit <kitname>
+    aliases: [kits]
