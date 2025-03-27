@@ -29,4 +29,3 @@ public class SimpleItem implements GuiItem {
         }
     }
 }
-

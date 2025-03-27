@@ -7,6 +7,7 @@ import p.zestianKits.model.Kit;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FileKitRepository implements KitRepository {
 
@@ -28,8 +29,10 @@ public class FileKitRepository implements KitRepository {
             return false;
         }
         YamlConfiguration config = new YamlConfiguration();
+        config.set("id", kit.getId());
         config.set("cooldown", kit.getCooldown());
         config.set("items", Arrays.asList(kit.getItems()));
+        config.set("permission", kit.getPermission());
 
         try {
             config.save(file);
@@ -48,7 +51,9 @@ public class FileKitRepository implements KitRepository {
 
     @Override
     public Collection<Kit> getAllKits() {
-        return kits.values();
+        return kits.values().stream()
+                .sorted(Comparator.comparingLong(Kit::getId))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -68,8 +73,11 @@ public class FileKitRepository implements KitRepository {
             return false;
         }
         YamlConfiguration config = new YamlConfiguration();
+        config.set("id", kit.getId());
         config.set("cooldown", kit.getCooldown());
         config.set("items", Arrays.asList(kit.getItems()));
+        config.set("permission", kit.getPermission());
+
         try {
             config.save(file);
             reload();
@@ -88,10 +96,11 @@ public class FileKitRepository implements KitRepository {
         for (File file : files) {
             YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
             String kitName = file.getName().replace(".yml", "");
+            String permission = config.getString("permission", "zestiankits.kit." + kitName);
             long cooldown = config.getLong("cooldown", 0);
+            long id = config.getLong("id", 0);
             List<ItemStack> items = (List<ItemStack>) config.getList("items");
-            kits.put(kitName, new Kit(kitName, items != null ? items.toArray(new ItemStack[0]) : new ItemStack[0], cooldown));
+            kits.put(kitName, new Kit(id, kitName, items != null ? items.toArray(new ItemStack[0]) : new ItemStack[0], cooldown, permission));
         }
     }
 }
-

@@ -2,7 +2,9 @@ package p.zestianKits.commands.subcommands;
 
 import org.bukkit.entity.Player;
 import p.zestianKits.commands.KitSubCommand;
+import p.zestianKits.model.commands.Permissions;
 import p.zestianKits.service.KitService;
+import p.zestianKits.utils.messages.LangUtil;
 
 public class ReloadKitCommand implements KitSubCommand {
 
@@ -15,7 +17,8 @@ public class ReloadKitCommand implements KitSubCommand {
     @Override
     public void execute(Player player, String[] args) {
         kitService.reloadKits();
-        player.sendMessage("§aKits recargados correctamente.");
+        LangUtil.reloadLang();
+        player.sendMessage(LangUtil.getString(player, "messages.kits-reloaded", true));
     }
 
     @Override
@@ -25,12 +28,7 @@ public class ReloadKitCommand implements KitSubCommand {
 
     @Override
     public String getPermission() {
-        return "zestiankits.admin";
-    }
-
-    @Override
-    public String getUsage() {
-        return "/kit reload";
+        return Permissions.COMMAND_RELOAD.getPermission();
     }
 }
 

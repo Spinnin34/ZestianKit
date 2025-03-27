@@ -1,0 +1,36 @@
+#
+#   ██████╗██████╗ ██╗███╗  ██╗███╗  ██╗██╗███╗  ██╗
+#  ██╔════╝██╔══██╗██║████╗ ██║████╗ ██║██║████╗ ██║
+#  ╚█████╗░██████╔╝██║██╔██╗██║██╔██╗██║██║██╔██╗██║
+#   ╚═══██╗██╔═══╝ ██║██║╚████║██║╚████║██║██║╚████║
+#  ██████╔╝██║     ██║██║ ╚███║██║ ╚███║██║██║ ╚███║
+#  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚══╝╚═╝  ╚══╝╚═╝╚═╝  ╚══╝
+#
+
+messages:
+  prefix: "<color:#FF003E>ᴋɪᴛs</color> &f»&7 "
+  notperms: "&#FF124C⚠ No tienes permisos para usar este comando."
+  notplayer: "&#FF124C⚠ Solo jugadores pueden usar este comando."
+  notperms-kit: "&#FF124C⚠ No tienes permiso para reclamar este kit."
+  invalid-subcommand: "&#FF124C⚠ Subcomando inválido. Uso: /kit <create|edit|delete|reload>"
+  invalid-cooldown: "&#FF124C⚠ El cooldown debe ser un número válido."
+  default-kit-set: "Kit por defecto establecido a: &#FF003E%kit%"
+  usage-set-default-kit: "Uso: &f/kit set-default-kit <nombre>"
+  default-kit-no-space: "&#FF124C⚠ No tienes espacio para el kit inicial"
+  kit-no-space: "&#FF124C⚠ No tienes suficiente espacio en tu inventario para reclamar este kit."
+  kit-exists: "El kit ya existe."
+  kit-not-exists: "El kit no existe o no se pudo eliminar."
+  kit-deleted: "Kit eliminado correctamente."
+  kit-created: "Kit creado exitosamente"
+  kit-claim: "Has reclamado el kit: &#FF003E%kit%"
+  kit-updated: "Kit editado exitosamente."
+  kit-claim-cooldown: "Debes esperar &#FF003E%time%&7 para reclamar el kit &#FF003E%kit%&7."
+  error-kit-created: "&#FF124C⚠ Error al crear el kit (quizá ya existe)."
+  error-cooldown: "&#FF124C⚠ Error al procesar el cooldown."
+  error-title-data: "&#FF124C⚠ Error al procesar los datos del título."
+  kits-reloaded: "Kits recargados correctamente."
+  usage-create-kit: "Uso: &f/kit create <nombre> <cooldown> [permiso]"
+  usage-edit-kit: "Uso: &f/kit create <nombre> <cooldown> [permiso]"
+  usage-delete-kit: "Uso: &f/kit delete <nombre>"
+
+

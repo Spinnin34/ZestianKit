@@ -1,13 +1,15 @@
-package p.zestianKits.model;
+package p.zestianKits.service.editor;
 
-public class KitOperationContext {
+import p.zestianKits.model.OperationType;
+
+public class KitSession {
     private final OperationType operationType;
     private final String kitName;
     private final long cooldown;
     private final String permission;
     private final long id;
 
-    public KitOperationContext(OperationType operationType, String kitName, long cooldown, String permission, long id) {
+    public KitSession(OperationType operationType, String kitName, long cooldown, String permission, long id) {
         this.operationType = operationType;
         this.kitName = kitName;
         this.cooldown = cooldown;

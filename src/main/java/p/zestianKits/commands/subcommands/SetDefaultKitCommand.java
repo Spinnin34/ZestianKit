@@ -2,18 +2,18 @@ package p.zestianKits.commands.subcommands;
 
 import org.bukkit.entity.Player;
 import p.zestianKits.ZestianKits;
-import p.zestianKits.gui.KitEditor;
 import p.zestianKits.commands.KitSubCommand;
-import p.zestianKits.model.Kit;
 import p.zestianKits.model.commands.Permissions;
 import p.zestianKits.service.KitService;
 import p.zestianKits.utils.messages.LangUtil;
 
-public class EditKitCommand implements KitSubCommand {
+import java.util.Map;
+
+public class SetDefaultKitCommand implements KitSubCommand {
 
     private final KitService kitService;
 
-    public EditKitCommand(KitService kitService) {
+    public SetDefaultKitCommand(KitService kitService) {
         this.kitService = kitService;
     }
 
@@ -23,27 +23,30 @@ public class EditKitCommand implements KitSubCommand {
             player.sendMessage(LangUtil.getString(player, "messages.notperms", true));
             return;
         }
+
         if (args.length < 2) {
-            player.sendMessage(LangUtil.getString(player, "messages.usage-edit-kit", true));
+            player.sendMessage(LangUtil.getString(player, "messages.usage-set-default-kit", true));
             return;
         }
+
         String kitName = args[1];
-        Kit kit = kitService.getKit(kitName);
-        if (kit == null) {
+        if (kitService.getKit(kitName) == null) {
             player.sendMessage(LangUtil.getString(player, "messages.kit-not-exists", true));
             return;
         }
 
-        new KitEditor(kitService, kitName, kit.getCooldown(), kit.getPermission(), ZestianKits.getInstance()).open(player);
+        ZestianKits.getInstance().getConfig().set("default-kit", kitName);
+        ZestianKits.getInstance().saveConfig();
+        player.sendMessage(LangUtil.getString("messages.default-kit-set", true, Map.of("%kit%", kitName)));
     }
 
     @Override
     public String getName() {
-        return "edit";
+        return "set-default";
     }
 
     @Override
     public String getPermission() {
-        return Permissions.COMMAND_EDIT.getPermission();
+        return Permissions.COMMAND_SET_DEFAULT.getPermission();
     }
 }

@@ -5,26 +5,26 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import p.zestianKits.ZestianKits;
 import p.zestianKits.handler.BaseInventoryHandler;
-import p.zestianKits.service.KitClaimService;
+import p.zestianKits.service.KitViewService;
 
-public class KitClaimHandler extends BaseInventoryHandler {
+public class KitViewHandler extends BaseInventoryHandler {
 
-    private final KitClaimService claimService;
+    private final KitViewService kitViewService;
 
-    public KitClaimHandler(ZestianKits plugin, KitClaimService claimService) {
+    public KitViewHandler(ZestianKits plugin, KitViewService kitViewService) {
         super(plugin, "kit_icon");
-        this.claimService = claimService;
+        this.kitViewService = kitViewService;
     }
 
     @Override
     public boolean shouldHandle(InventoryClickEvent event) {
-        return event.getClick() == ClickType.LEFT && getPersistentString(event.getCurrentItem()) != null;
+        return event.getClick() == ClickType.RIGHT && getPersistentString(event.getCurrentItem()) != null;
     }
 
     @Override
     public void handle(InventoryClickEvent event) {
         event.setCancelled(true);
         String kitName = getPersistentString(event.getCurrentItem());
-        claimService.handleClaim((Player) event.getWhoClicked(), kitName);
+        kitViewService.openKitView((Player) event.getWhoClicked(), kitName);
     }
 }
